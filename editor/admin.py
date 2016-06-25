@@ -16,5 +16,8 @@ admin.site.register(Texto_Usuario)
 from editor.models import Paragrafo
 admin.site.register(Paragrafo)
 
+from editor.models import Tipo_Solicitacao
+admin.site.register(Tipo_Solicitacao)
+
 from editor.models import Solicitacao
 admin.site.register(Solicitacao)

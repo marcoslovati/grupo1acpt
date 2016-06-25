@@ -49,10 +49,13 @@ class Paragrafo(models.Model):
 	class Meta:
 		db_table = 'Paragrafo'
 		
+class Tipo_Solicitacao(models.Model):
+	descricao = models.CharField(max_length = 30)
+		
 class Solicitacao(models.Model):
 	texto = models.ForeignKey(Texto)
 	usuario = models.ForeignKey(Usuario)
-	tipo = models.IntegerField()
+	tipo = models.ForeignKey(Tipo_Solicitacao)
 	rodada = models.IntegerField()
 	atendida = models.BooleanField()
 	
