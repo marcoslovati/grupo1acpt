@@ -1,0 +1,39 @@
+﻿{% load staticfiles %}
+
+{% include "layout.html" %} 
+
+<div class="container">
+
+	<!-- Div lateral -->
+	<div>
+
+	</div>	
+
+	<!-- div de listagem de histórias moderadas pelo usuário -->
+	<div>
+		{% for texto in textos_moderador %}
+		<div>
+			<div><h1>{{texto.titulo}}</h1></div>
+			<div><label>Gênero:</label>{{texto.genero.descricao}}</div>
+			<div><label>Nº Rodadas:</label>{{texto.numero_rodadas}}</div>
+			<div><label>Encontro:</label>{{texto.data_encontro}}</div>
+		</div>
+	{% endfor %}
+	</div>
+		
+	<!-- div de listagem de histórias em que usuário é convidado -->
+	<div>
+<!-- 		{% for texto in textos_convidado %}
+		<div>
+			<div><h1>{{texto.titulo}}</h1></div>
+			<div><label>Gênero:</label>{{texto.genero.descricao}}</div>
+			<div><label>Nº Rodadas:</label>{{texto.numero_rodadas}}</div>
+			<div><label>Encontro:</label>{{texto.data_encontro}}</div>
+		</div>
+	{% endfor %} -->
+	</div>	
+
+</div>
+
+</body>
+</html>
