@@ -3,12 +3,12 @@ from django.utils import timezone
 import datetime
 
 class Usuario(models.Model):
-	nome = models.CharField(max_length = 100)
-	email = models.CharField(max_length = 100)
-	senha = models.CharField(max_length = 30)
+    nome = models.CharField(max_length = 100)
+    email = models.CharField(max_length = 100)
+    senha = models.CharField(max_length = 30)
 
-	class Meta:
-		db_table = 'Usuario'
+    class Meta:
+        db_table = 'Usuario'
 		
 class Genero(models.Model):
 	nome = models.CharField(max_length = 100)
