@@ -1,0 +1,32 @@
+{% load staticfiles %}
+
+{% include "header.html" %}
+
+<div class="container">
+    <h1 id="titulo-login" class="text-center">
+        Histórias do Tio Crediné
+    </h1>
+    <div class="col-md-offset-4 col-md-4">
+        <form action="" method="post" >
+            
+            <div class="form-group">
+                <label for="exampleInputEmail1">Usuário</label>
+                <input type="text" class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Senha</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+ 
+            <button type="submit" class="btn btn-default">Entrar</button>
+        </form>
+
+    </div>
+    {% block content %}
+    {% for usuario in all_usuarios %}
+    <p>{{ usuario.nome }}</p>
+    {% endfor %}
+    {% endblock content %}
+</div>
+
+{% include "footer.html" %}
