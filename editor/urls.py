@@ -2,5 +2,6 @@
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.inicial),
+	url(r'^$', 'views.index', name='index'),
+    url(r'^editor', views.inicial),	
 ]
