@@ -20,12 +20,13 @@ class Texto(models.Model):
 	data_encontro = models.DateTimeField()
 	moderador = models.ForeignKey(Usuario)
 	moderador_participa = models.BooleanField()
-	titulo = models.TextField(max_length = 200)
-	genero = models.ForeignKey(Genero)
-	primeiro_paragrafo = models.TextField(max_length = 1000)
-	tempo_participante = models.IntegerField()
-	numero_rodadas = models.IntegerField()
+	titulo = models.TextField(max_length = 200, null = True)
+	genero = models.ForeignKey(Genero, null = True)
+	primeiro_paragrafo = models.TextField(max_length = 1000, null = True)
+	tempo_participante = models.IntegerField(null = True)
+	numero_rodadas = models.IntegerField(null = True)
 	encerrado = models.BooleanField()
+	rodada_atual = models.IntegerField(null = True)
 	
 	class Meta:
 		db_table = 'Texto'
@@ -42,20 +43,25 @@ class Texto_Usuario(models.Model):
 class Paragrafo(models.Model):
 	texto = models.ForeignKey(Texto)
 	usuario = models.ForeignKey(Usuario)
-	data_inicio = models.DateTimeField()
-	data_fim = models.DateTimeField()
+	data_inicio = models.DateTimeField(null = True)
+	data_fim = models.DateTimeField(null = True)
 	descricao = models.TextField(max_length = 1000)
     
 	class Meta:
 		db_table = 'Paragrafo'
 		
-class Tipo_Solicitacao(models.Model):
-	descricao = models.CharField(max_length = 30)
+TIPO_SOLICITACAO_OPCOES = (
+    ('V', 'Passar a vez'),
+    ('P', 'Pular rodada'),
+)
+		
+# class Tipo_Solicitacao(models.Model):
+	# descricao = models.CharField(max_length = 30)
 		
 class Solicitacao(models.Model):
 	texto = models.ForeignKey(Texto)
 	usuario = models.ForeignKey(Usuario)
-	tipo = models.ForeignKey(Tipo_Solicitacao)
+	tipo = models.CharField(max_length=1, choices=TIPO_SOLICITACAO_OPCOES)
 	rodada = models.IntegerField()
 	atendida = models.BooleanField()
 	
