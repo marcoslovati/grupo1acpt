@@ -2,54 +2,63 @@
 
 {% include "layout.html" %} 
 
-<div class="container">
-
-	<!-- Div lateral -->
-	<div>
-		
-	</div>	
-
-	<section>
-		<div>
-			<h2>Textos moderados por você<h2>
+		<div class="container">
+			
+			<!-- Div lateral -->
+			<div>
+				
+			</div>	
+			
+			<section>
+				<table class="table table-striped"> 
+					<caption><h2>Textos moderados por você<h2></caption> 
+					<thead> 
+						<tr> 
+							<th>Título</th> 
+							<th>Gênero</th> 
+							<th>Nº Rodadas</th> 
+							<th>Encontro</th> 
+						</tr> 
+					</thead> 
+					<tbody>
+					{% for texto in textos_moderador %}
+						<tr> 
+							<th scope="row">{{texto.titulo}}</th> 
+							<td>{{texto.genero.nome}}</td> 
+							<td>{{texto.numero_rodadas}}</td>
+							<td>@{{texto.data_encontro}}</td> 
+						</tr> 
+					{% endfor %}
+					</tbody> 
+				</table>
+					
+			</section>
+						
+			<section>
+					<table class="table table-striped"> 
+					<caption><h2>Textos nos quais você é convidado<h2></caption> 
+					<thead> 
+						<tr> 
+							<th>Título</th> 
+							<th>Gênero</th> 
+							<th>Nº Rodadas</th> 
+							<th>Encontro</th> 
+						</tr> 
+					</thead> 
+					<tbody>
+					{% for texto in textos_convidado %}
+						<tr> 
+							<th scope="row">{{texto.titulo}}</th> 
+							<td>{{texto.genero.nome}}</td> 
+							<td>{{texto.numero_rodadas}}</td>
+							<td>@{{texto.data_encontro}}</td> 
+						</tr> 
+					{% endfor %}
+					</tbody> 
+				</table>
+			</section>	
+								
 		</div>
-		<div>
-			<div class="col-md-4"><label>Título</label></div>
-			<div class="col-md-3"><label>Gênero</label></div>
-			<div class="col-md-2"><label>Nº Rodadas</label></div>
-			<div class="col-md-3"><label>Encontro</label></div>
-		</div>
-		{% for texto in textos_moderador %}
-		<div>
-			<div class="col-md-4">{{texto.titulo}}</div>
-			<div class="col-md-3">{{texto.genero.nome}}</div>
-			<div class="col-md-2">{{texto.numero_rodadas}}</div>
-			<div class="col-md-3">{{texto.data_encontro}}</div>
-		</div>
-	{% endfor %}
-	</section>
-		
-	<section>
-		<div>
-			<h2>Textos nos quais você é convidado<h2>
-		</div>
-		<div>
-			<div class="col-md-4"><label>Título</label></div>
-			<div class="col-md-3"><label>Gênero</label></div>
-			<div class="col-md-2"><label>Nº Rodadas</label></div>
-			<div class="col-md-3"><label>Encontro</label></div>
-		</div>
-		{% for texto in textos_convidado %}
-		<div>
-			<div class="col-md-4">{{texto.titulo}}</div>
-			<div class="col-md-3">{{texto.genero.nome}}</div>
-			<div class="col-md-2">{{texto.numero_rodadas}}</div>
-			<div class="col-md-3">{{texto.data_encontro}}</div>
-		</div>
-	{% endfor %}
-	</section>	
-
-</div>
-
+					
 </body>
-</html>
+</html>										
