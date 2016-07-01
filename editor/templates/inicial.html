@@ -9,29 +9,45 @@
 		
 	</div>	
 
-	<!-- div de listagem de histórias moderadas pelo usuário -->
-	<div>
+	<section>
+		<div>
+			<h2>Textos moderados por você<h2>
+		</div>
+		<div>
+			<div class="col-md-4"><label>Título</label></div>
+			<div class="col-md-3"><label>Gênero</label></div>
+			<div class="col-md-2"><label>Nº Rodadas</label></div>
+			<div class="col-md-3"><label>Encontro</label></div>
+		</div>
 		{% for texto in textos_moderador %}
 		<div>
-			<div><h1>{{texto.titulo}}</h1></div>
-			<div><label>Gênero:</label>{{texto.genero.descricao}}</div>
-			<div><label>Nº Rodadas:</label>{{texto.numero_rodadas}}</div>
-			<div><label>Encontro:</label>{{texto.data_encontro}}</div>
+			<div class="col-md-4">{{texto.titulo}}</div>
+			<div class="col-md-3">{{texto.genero.nome}}</div>
+			<div class="col-md-2">{{texto.numero_rodadas}}</div>
+			<div class="col-md-3">{{texto.data_encontro}}</div>
 		</div>
 	{% endfor %}
-	</div>
+	</section>
 		
-	<!-- div de listagem de histórias em que usuário é convidado -->
-	<div>
-<!-- 		{% for texto in textos_convidado %}
+	<section>
 		<div>
-			<div><h1>{{texto.titulo}}</h1></div>
-			<div><label>Gênero:</label>{{texto.genero.descricao}}</div>
-			<div><label>Nº Rodadas:</label>{{texto.numero_rodadas}}</div>
-			<div><label>Encontro:</label>{{texto.data_encontro}}</div>
+			<h2>Textos nos quais você é convidado<h2>
 		</div>
-	{% endfor %} -->
-	</div>	
+		<div>
+			<div class="col-md-4"><label>Título</label></div>
+			<div class="col-md-3"><label>Gênero</label></div>
+			<div class="col-md-2"><label>Nº Rodadas</label></div>
+			<div class="col-md-3"><label>Encontro</label></div>
+		</div>
+		{% for texto in textos_convidado %}
+		<div>
+			<div class="col-md-4">{{texto.titulo}}</div>
+			<div class="col-md-3">{{texto.genero.nome}}</div>
+			<div class="col-md-2">{{texto.numero_rodadas}}</div>
+			<div class="col-md-3">{{texto.data_encontro}}</div>
+		</div>
+	{% endfor %}
+	</section>	
 
 </div>
 
