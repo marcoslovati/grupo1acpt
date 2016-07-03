@@ -14,3 +14,7 @@ def index(request):
     usuarios = Usuario.objects.all().order_by('nome')
     context = {'all_usuarios' : usuarios}
     return render(request, 'index.html', context)
+
+def historia(request):
+    historia = Texto.objects.filter()[:1].get()
+    return render(request, 'historia.html', {'historia': historia})

@@ -1,0 +1,55 @@
+{% load staticfiles %}
+
+{% include "header.html" %}
+
+{% include "navbar.html" %}
+
+    <div class="container">
+        <div class="col-md-12">
+            <h3>
+                <strong>Título: </strong> {{ historia.titulo }}
+            </h3>
+        </div>
+        
+        <div class="col-md-6">
+            <h3>
+                <strong>Gênero: </strong> {{ historia.genero.nome }}
+            </h3>
+        </div>
+        
+        <div class="col-md-6">
+            <h3>
+                <strong>Moderador: </strong> {{ historia.moderador.nome}}
+            </h3>
+        </div>
+        
+        <div class="col-md-12">
+            <h3>
+                <strong>Primeiro Parágrafo: </strong>
+                <br>
+                {{ historia.primeiro_paragrafo}}
+            </h3>
+            
+        </div>
+        
+        <div class="col-md-4">
+            <h3>
+                <strong>Número de rodadas: </strong> {{ historia.numero_rodadas }}
+            </h3>
+        </div>
+        
+        <div class="col-md-4">
+            <h3>
+                <strong>Tempo de cada rodada: </strong> {{ historia.tempo_participante}}
+            </h3>
+        </div>
+        
+        <div class="col-md-4">
+            <h3>
+                <strong>Rodada Atual:</strong> {{ historia.rodada_atual }}
+            </h3>
+        </div>   
+    </div>
+					
+</body>
+</html>										

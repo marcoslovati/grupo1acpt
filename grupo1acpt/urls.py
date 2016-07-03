@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^$', 'editor.views.index'),
     url(r'^inicial/', 'editor.views.inicial'),
+    url(r'^historia/', 'editor.views.historia'),
 ]
