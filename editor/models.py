@@ -20,13 +20,13 @@ class Texto(models.Model):
 	data_encontro = models.DateTimeField()
 	moderador = models.ForeignKey(Usuario)
 	moderador_participa = models.BooleanField()
-	titulo = models.TextField(max_length = 200, null = True)
-	genero = models.ForeignKey(Genero, null = True)
-	primeiro_paragrafo = models.TextField(max_length = 1000, null = True)
-	tempo_participante = models.IntegerField(null = True)
-	numero_rodadas = models.IntegerField(null = True)
+	titulo = models.TextField(max_length = 200, null = True, blank = True)
+	genero = models.ForeignKey(Genero, null = True, blank = True)
+	primeiro_paragrafo = models.TextField(max_length = 1000, null = True, blank = True)
+	tempo_participante = models.IntegerField(null = True, blank = True)
+	numero_rodadas = models.IntegerField(null = True, blank = True)
 	encerrado = models.BooleanField()
-	rodada_atual = models.IntegerField(null = True)
+	rodada_atual = models.IntegerField(null = True, blank = True)
 	
 	class Meta:
 		db_table = 'Texto'
