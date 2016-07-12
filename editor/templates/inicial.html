@@ -9,55 +9,65 @@
 			<!-- Div lateral -->
 			<div>
 				
-			</div>	
+			</div>
 			
 			<section>
-				<table class="table table-striped"> 
-					<caption><h2>Textos moderados por você<h2></caption> 
-					<thead> 
-						<tr> 
-							<th>Título</th> 
-							<th>Gênero</th> 
-							<th>Nº Rodadas</th> 
-							<th>Encontro</th> 
-						</tr> 
-					</thead> 
-					<tbody>
-					{% for texto in textos_moderador %}
-						<tr> 
-							<th scope="row">{{texto.titulo}}</th> 
-							<td>{{texto.genero.nome}}</td> 
-							<td>{{texto.numero_rodadas}}</td>
-							<td>@{{texto.data_encontro}}</td> 
-						</tr> 
-					{% endfor %}
-					</tbody> 
-				</table>
+				<div>
+					<button class="btn btn-primary">Novo Texto</button>
+				</div>
+			</section>
+			
+			<section>
+				<h2>Textos moderados por você<h2>
+				<div class="div-lista-textos">					
+					<table class="table table-striped">						 
+						<thead> 
+							<tr> 
+								<th>Título</th> 
+								<th>Gênero</th> 
+								<th>Nº Rodadas</th> 
+								<th>Encontro</th> 
+							</tr> 
+						</thead> 
+						<tbody>
+						{% for texto in textos_moderador %}
+							<tr> 
+								<th scope="row">{{texto.titulo}}</th> 
+								<td>{{texto.genero.nome}}</td> 
+								<td>{{texto.numero_rodadas}}</td>
+								<td>@{{texto.data_encontro}}</td> 
+							</tr> 
+						{% endfor %}
+						</tbody> 
+					</table>
+				</div>
 					
 			</section>
 						
-			<section>
-					<table class="table table-striped"> 
-					<caption><h2>Textos nos quais você é convidado<h2></caption> 
-					<thead> 
-						<tr> 
-							<th>Título</th> 
-							<th>Gênero</th> 
-							<th>Nº Rodadas</th> 
-							<th>Encontro</th> 
-						</tr> 
-					</thead> 
-					<tbody>
-					{% for texto in textos_convidado %}
-						<tr> 
-							<th scope="row">{{texto.titulo}}</th> 
-							<td>{{texto.genero.nome}}</td> 
-							<td>{{texto.numero_rodadas}}</td>
-							<td>@{{texto.data_encontro}}</td> 
-						</tr> 
-					{% endfor %}
-					</tbody> 
-				</table>
+			<section class="sec-lista-textos">
+				<h2>Textos nos quais você é convidado<h2>
+				<div class="div-lista-textos">					
+					<table class="table table-striped">						
+						<thead> 
+							<tr> 
+								<th>Título</th> 
+								<th>Gênero</th> 
+								<th>Nº Rodadas</th> 
+								<th>Encontro</th> 
+							</tr> 
+						</thead> 
+						<tbody>
+						{% for texto in textos_convidado %}
+							<tr> 
+								<th scope="row">{{texto.titulo}}</th> 
+								<td>{{texto.genero.nome}}</td> 
+								<td>{{texto.numero_rodadas}}</td>
+								<td>@{{texto.data_encontro}}</td> 
+							</tr> 
+						{% endfor %}
+						</tbody> 
+					</table>
+				</div>
 			</section>	
 								
 		</div>
