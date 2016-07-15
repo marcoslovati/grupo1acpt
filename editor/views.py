@@ -1,7 +1,8 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse
 from .models import Texto
 from .models import Usuario
+from .forms import CadastroTextoForm
 
 # Create your views here.
 
@@ -18,3 +19,19 @@ def index(request):
 def historia(request):
     historia = Texto.objects.filter()[:1].get()
     return render(request, 'historia.html', {'historia': historia})
+		
+def editar(request, pk):
+    texto = get_object_or_404(Texto, pk=pk)
+    return render(request, 'editar.html', {'texto': texto})
+
+def incluir(request):
+	if request.method == "POST":
+		form = CadastroTextoForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.moderador = request.user
+			post.save()
+			return redirect('inicial')
+	else:
+		form = CadastroTextoForm()
+	return render(request, 'incluir.html', {'form': form})

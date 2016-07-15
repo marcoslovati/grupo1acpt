@@ -1,0 +1,16 @@
+{% load staticfiles %}
+
+{% include "header.html" %}
+
+{% include "navbar.html" %}
+
+<div class="container">
+	<h2>Novo Texto</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-primary">Criar</button>
+    </form>
+	
+</div>
+	
+{% include "footer.html" %}	

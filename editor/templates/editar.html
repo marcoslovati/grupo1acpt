@@ -1,0 +1,24 @@
+﻿{% load staticfiles %}
+
+{% include "header.html" %}
+
+{% include "navbar.html" %}
+
+
+<div class="container">
+    <div class="form-group">
+        <div class="col-md-4"><label>Tempo para cada participante escrever (min.):</label></div>
+        <div class="col-md-1"><input class="form-control" type="number" value="{{texto.tempo_participante}}" /></div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"><label>Número de rodadas:</label></div>
+        <div class="col-md-1"><input class="form-control" type="number" value="{{texto.numero_rodadas}}" /></div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"><label>Número de linhas:</label></div>
+        <div class="col-md-1"><input class="form-control" type="number" value="{{texto.}}" /></div>
+    </div>
+	<div>
+		<input type="submit" class="btn btn-primary" />
+	</div>
+</div>

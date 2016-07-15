@@ -17,7 +17,7 @@ class Genero(models.Model):
 		db_table = 'Genero'
 		
 class Texto(models.Model):
-	data_encontro = models.DateTimeField()
+	data_encontro = models.DateTimeField("Data primeiro encontro")
 	moderador = models.ForeignKey(Usuario)
 	moderador_participa = models.BooleanField()
 	titulo = models.TextField(max_length = 200, null = True, blank = True)
@@ -27,6 +27,7 @@ class Texto(models.Model):
 	numero_rodadas = models.IntegerField(null = True, blank = True)
 	encerrado = models.BooleanField()
 	rodada_atual = models.IntegerField(null = True, blank = True)
+	numero_linhas = models.IntegerField(null = True, blank = True)
 	
 	class Meta:
 		db_table = 'Texto'

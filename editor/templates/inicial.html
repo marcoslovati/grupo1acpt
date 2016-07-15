@@ -13,12 +13,13 @@
 			
 			<section>
 				<div>
-					<button class="btn btn-primary">Novo Texto</button>
+					<!-- <button class="btn btn-primary">Novo Texto</button> -->
+					<a href="{% url 'editor.views.incluir' %}" class="btn btn-primary">Novo Texto</a>
 				</div>
 			</section>
 			
 			<section>
-				<h2>Textos moderados por você<h2>
+				<h2>Textos moderados por você</h2>
 				<div class="div-lista-textos">					
 					<table class="table table-striped">						 
 						<thead> 
@@ -27,6 +28,7 @@
 								<th>Gênero</th> 
 								<th>Nº Rodadas</th> 
 								<th>Encontro</th> 
+                                <th></th>
 							</tr> 
 						</thead> 
 						<tbody>
@@ -36,6 +38,7 @@
 								<td>{{texto.genero.nome}}</td> 
 								<td>{{texto.numero_rodadas}}</td>
 								<td>@{{texto.data_encontro}}</td> 
+                                <td><a href="{% url 'editor.views.editar' pk=texto.pk %}">Configurar</a></td>
 							</tr> 
 						{% endfor %}
 						</tbody> 
