@@ -7,24 +7,30 @@
         Histórias do Tio Crediné
     </h1>
     <div class="col-md-offset-4 col-md-4">
-        <form action="" method="post" >
+        <form method="POST" action='/index' class="post-form">{% csrf_token %}
             
-            <div class="form-group">
-                <label for="exampleInputEmail1">Usuário</label>
-                <input type="text" class="form-control" id="exampleInputEmail1">
+			<div class="form-group">
+                <label for="email">usuário</label>
+                <input type="text" class="form-control" name="email" id="email">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Senha</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="password">senha</label>
+                <input type="password" class="form-control" id="password">
             </div>
+			
+			<!-- {{ form.as_p }} -->
  
-            <button type="submit" class="btn btn-default">Entrar</button>
+			<input type="submit" class="btn btn-default" value="Entrar" />
         </form>
+		
+		{% if form.errors %}
+			<p class="error">Usuário e/ou senha inválidos</p>
+		{% endif %}
 
     </div>
     {% block content %}
     {% for usuario in all_usuarios %}
-    <p>{{ usuario.nome }}</p>
+    <p>{{ usuario.email }} - {{ usuario.nome }}</p>
     {% endfor %}
     {% endblock content %}
 </div>

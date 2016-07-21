@@ -20,6 +20,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^$', 'editor.views.index'),
+	url(r'^index', 'editor.views.index'),	
     url(r'^inicial/', 'editor.views.inicial'),
     url(r'^historia/', 'editor.views.historia'),
 	url(r'^editar/(?P<pk>[0-9]+)/$', 'editor.views.editar'),

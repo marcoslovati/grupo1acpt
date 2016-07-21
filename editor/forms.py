@@ -1,5 +1,6 @@
 ﻿from django import forms
 from .models import Texto
+from .models import Usuario
 # from django.forms import DateTimeField
 
 class CadastroTextoForm(forms.ModelForm):
@@ -10,3 +11,12 @@ class CadastroTextoForm(forms.ModelForm):
 		model = Texto
 		fields = ('data_encontro', 'moderador_participa',)
 
+class LoginForm(forms.ModelForm):
+
+	class Meta:
+		model = Usuario
+		senha = forms.CharField(widget=forms.PasswordInput)
+		widgets = {
+			'password': forms.PasswordInput(),
+		},
+		fields = 'email', 'senha'

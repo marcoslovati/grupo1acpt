@@ -3,20 +3,23 @@ from django.utils import timezone
 import datetime
 
 class Usuario(models.Model):
-    nome = models.CharField(max_length = 100)
-    email = models.CharField(max_length = 100)
-    senha = models.CharField(max_length = 30)
-
-    class Meta:
-        db_table = 'Usuario'
+	id = models.AutoField(primary_key=True)
+	nome = models.CharField(max_length = 100)
+	email = models.CharField(max_length = 100)
+	senha = models.CharField(max_length = 30)
+	
+	class Meta:
+		db_table = 'Usuario'
 		
 class Genero(models.Model):
+	id = models.AutoField(primary_key=True)
 	nome = models.CharField(max_length = 100)
 	
 	class Meta:
 		db_table = 'Genero'
 		
 class Texto(models.Model):
+	id = models.AutoField(primary_key=True)
 	data_encontro = models.DateTimeField("Data primeiro encontro")
 	moderador = models.ForeignKey(Usuario)
 	moderador_participa = models.BooleanField()
@@ -33,6 +36,7 @@ class Texto(models.Model):
 		db_table = 'Texto'
 
 class Texto_Usuario(models.Model):
+	id = models.AutoField(primary_key=True)
 	texto = models.ForeignKey(Texto)
 	usuario = models.ForeignKey(Usuario)
 	ordem = models.IntegerField()
@@ -42,6 +46,7 @@ class Texto_Usuario(models.Model):
 		db_table = 'Texto_Usuario'
 		
 class Paragrafo(models.Model):
+	id = models.AutoField(primary_key=True)
 	texto = models.ForeignKey(Texto)
 	usuario = models.ForeignKey(Usuario)
 	data_inicio = models.DateTimeField(null = True)
@@ -60,6 +65,7 @@ TIPO_SOLICITACAO_OPCOES = (
 	# descricao = models.CharField(max_length = 30)
 		
 class Solicitacao(models.Model):
+	id = models.AutoField(primary_key=True)
 	texto = models.ForeignKey(Texto)
 	usuario = models.ForeignKey(Usuario)
 	tipo = models.CharField(max_length=1, choices=TIPO_SOLICITACAO_OPCOES)

@@ -1,5 +1,7 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import auth
+from django.template.context_processors import csrf
 from .models import Texto
 from .models import Usuario
 from .forms import CadastroTextoForm
@@ -7,14 +9,23 @@ from .forms import CadastroTextoForm
 # Create your views here.
 
 def inicial(request):
-	textos_moderador = Texto.objects.filter(moderador=1).order_by('data_encontro') # trocar depois '1' pelo id do usuario logado
-	textos_convidado = Texto.objects.filter(texto_usuario__usuario=1).exclude(moderador=1).order_by('data_encontro')
+	usuario = request.session['usuario']
+	textos_moderador = Texto.objects.filter(moderador=usuario).order_by('data_encontro')
+	textos_convidado = Texto.objects.filter(texto_usuario__usuario=usuario).exclude(moderador=usuario).order_by('data_encontro')
 	return render(request, 'inicial.html', {'textos_moderador': textos_moderador, 'textos_convidado': textos_convidado})
 
 def index(request):
-    usuarios = Usuario.objects.all().order_by('nome')
-    context = {'all_usuarios' : usuarios}
-    return render(request, 'index.html', context)
+	if request.method == "POST":
+		u_email = request.POST.get('email','')
+		usuario = Usuario.objects.filter(email=u_email)[0]	
+		if usuario is not None:
+			request.session['usuario'] = usuario.id
+			request.session['usuario_nome'] = usuario.nome
+			return HttpResponseRedirect('/inicial')
+	else:
+		usuarios = Usuario.objects.all().order_by('nome')
+		context = {'all_usuarios' : usuarios}
+		return render(request, 'index.html', context)
 
 def historia(request):
     historia = Texto.objects.filter()[:1].get()
@@ -29,9 +40,12 @@ def incluir(request):
 		form = CadastroTextoForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit=False)
-			post.moderador = request.user
+			usuario_id = request.session['usuario']
+			usuario = Usuario.objects.get(id=usuario_id)
+			post.moderador = usuario
+			post.encerrado = False
 			post.save()
-			return redirect('inicial')
+			return HttpResponseRedirect('/inicial')
 	else:
 		form = CadastroTextoForm()
 	return render(request, 'incluir.html', {'form': form})
