@@ -6,7 +6,7 @@
 
 
 <div class="container">
-    <div class="form-group">
+<!--     <div class="form-group">
         <div class="col-md-4"><label>Tempo para cada participante escrever (min.):</label></div>
         <div class="col-md-1"><input class="form-control" type="number" value="{{texto.tempo_participante}}" /></div>
     </div>
@@ -20,5 +20,12 @@
     </div>
 	<div>
 		<input type="submit" class="btn btn-primary" />
-	</div>
+	</div> -->
+	
+	    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-primary">Salvar</button>
+    </form>
 </div>
+
+{% include "footer.html" %}	

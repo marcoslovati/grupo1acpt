@@ -5,6 +5,7 @@ from django.template.context_processors import csrf
 from .models import Texto
 from .models import Usuario
 from .forms import CadastroTextoForm
+from .forms import EdicaoTextoForm
 
 # Create your views here.
 
@@ -32,19 +33,24 @@ def historia(request):
     return render(request, 'historia.html', {'historia': historia})
 		
 def editar(request, pk):
-    texto = get_object_or_404(Texto, pk=pk)
-    return render(request, 'editar.html', {'texto': texto})
+	texto = get_object_or_404(Texto, pk=pk)
+	form = EdicaoTextoForm(request.POST or None, instance=texto)
+	if request.method == "POST":
+		if form.is_valid():			
+			form.save()
+			return HttpResponseRedirect('/inicial')
+	return render(request, 'editar.html', {'form': form})
 
 def incluir(request):
 	if request.method == "POST":
 		form = CadastroTextoForm(request.POST)
 		if form.is_valid():
-			post = form.save(commit=False)
+			texto = form.save(commit=False)
 			usuario_id = request.session['usuario']
 			usuario = Usuario.objects.get(id=usuario_id)
-			post.moderador = usuario
-			post.encerrado = False
-			post.save()
+			texto.moderador = usuario
+			texto.encerrado = False
+			texto.save()
 			return HttpResponseRedirect('/inicial')
 	else:
 		form = CadastroTextoForm()

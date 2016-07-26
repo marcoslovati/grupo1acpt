@@ -11,12 +11,9 @@ class CadastroTextoForm(forms.ModelForm):
 		model = Texto
 		fields = ('data_encontro', 'moderador_participa',)
 
-class LoginForm(forms.ModelForm):
 
+class EdicaoTextoForm(forms.ModelForm):
+	
 	class Meta:
-		model = Usuario
-		senha = forms.CharField(widget=forms.PasswordInput)
-		widgets = {
-			'password': forms.PasswordInput(),
-		},
-		fields = 'email', 'senha'
+		model = Texto
+		fields = ('tempo_participante', 'numero_rodadas', 'numero_linhas',)

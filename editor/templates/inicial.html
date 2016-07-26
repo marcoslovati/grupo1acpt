@@ -38,7 +38,11 @@
 								<td>{{texto.genero.nome}}</td> 
 								<td>{{texto.numero_rodadas}}</td>
 								<td>@{{texto.data_encontro}}</td> 
-                                <td><a href="{% url 'editor.views.editar' pk=texto.pk %}">Configurar</a></td>
+								{% if texto.numero_rodadas %}
+									<td></td>
+								{% else %}
+									<td><a href="{% url 'editor.views.editar' pk=texto.pk %}">Configurar</a></td>
+								{% endif %}
 							</tr> 
 						{% endfor %}
 						</tbody> 
