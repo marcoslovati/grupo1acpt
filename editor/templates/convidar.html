@@ -1,0 +1,39 @@
+﻿{% load staticfiles %}
+
+{% include "header.html" %}
+
+{% include "navbar.html" %}
+
+
+<div class="container">	
+	    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-primary">Convidar</button>
+		<a href="{% url 'editor.views.inicial' %}" class="btn btn-primary">Voltar</a>
+    </form>
+	
+	<section>
+	<h2>Convidados</h2>
+	<div class="div-lista-textos">					
+		<table class="table table-striped">						 
+			<thead> 
+				<tr> 
+					<th>E-mail</th> 
+					<th>Ordem</th> 
+				</tr> 
+			</thead> 
+			<tbody>
+			{% for texto_usuario in lista_texto_usuarios %}
+				<tr> 
+					<th scope="row">{{texto_usuario.usuario}}</th> 
+					<td>{{texto_usuario.ordem}}</td> 
+				</tr> 
+			{% endfor %}
+			</tbody> 
+		</table>
+	</div>
+		
+</section>
+</div>
+
+{% include "footer.html" %}	

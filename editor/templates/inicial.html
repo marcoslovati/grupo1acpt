@@ -28,12 +28,12 @@
 								<th>Gênero</th> 
 								<th>Nº Rodadas</th> 
 								<th>Encontro</th> 
-                                <th></th>
+                                <th colspan="3"></th>
 							</tr> 
 						</thead> 
 						<tbody>
 						{% for texto in textos_moderador %}
-							<tr> 
+							<tr title="{{ texto.primeiro_paragrafo }}"> 
 								<th scope="row">{{texto.titulo}}</th> 
 								<td>{{texto.genero.nome}}</td> 
 								<td>{{texto.numero_rodadas}}</td>
@@ -42,6 +42,16 @@
 									<td></td>
 								{% else %}
 									<td><a href="{% url 'editor.views.editar' pk=texto.pk %}">Configurar</a></td>
+								{% endif %}
+								{% if texto.primeiro_paragrafo %}
+									<td></td>
+								{% else %}
+									<td><a href="{% url 'editor.views.convidar' pk=texto.pk %}">Convidar participantes</a></td>
+								{% endif %}
+								{% if texto.primeiro_paragrafo %}
+									<td></td>
+								{% else %}
+								<td><a href="{% url 'editor.views.iniciarEscrita' pk=texto.pk %}">Iniciar Escrita</a></td>
 								{% endif %}
 							</tr> 
 						{% endfor %}

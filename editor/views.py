@@ -4,8 +4,7 @@ from django.contrib import auth
 from django.template.context_processors import csrf
 from .models import Texto
 from .models import Usuario
-from .forms import CadastroTextoForm
-from .forms import EdicaoTextoForm
+from .forms import *
 
 # Create your views here.
 
@@ -40,6 +39,24 @@ def editar(request, pk):
 			form.save()
 			return HttpResponseRedirect('/inicial')
 	return render(request, 'editar.html', {'form': form})
+	
+def iniciarEscrita(request, pk):
+	texto = get_object_or_404(Texto, pk=pk)
+	form = InicioEscritaTextoForm(request.POST or None, instance=texto)
+	if request.method == "POST":
+		if form.is_valid():			
+			form.save()
+			return HttpResponseRedirect('/inicial')
+	return render(request, 'iniciarEscrita.html', {'form': form})
+
+def convidar(request, pk):
+	form = ConviteForm(request.POST or None, initial={"cancelado": False, "texto": pk})
+	lista_texto_usuarios = Texto_Usuario.objects.filter(texto=pk).order_by('ordem')
+	if request.method == "POST":		
+		if form.is_valid():
+			texto_usuario = form.save()			
+			texto_usuario.save()
+	return render(request, 'convidar.html', {'form': form, 'lista_texto_usuarios': lista_texto_usuarios})
 
 def incluir(request):
 	if request.method == "POST":
