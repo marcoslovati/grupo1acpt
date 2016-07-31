@@ -15,3 +15,7 @@ body {
 #btn-login {
     width: 100%;
 }
+
+.divisao-historia {
+    border-top-color: #000;
+}

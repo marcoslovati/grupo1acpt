@@ -26,8 +26,9 @@
         <div class="col-md-12">
             <h3>
                 <strong>Primeiro Parágrafo: </strong>
-                <br>
-                {{ historia.primeiro_paragrafo}}
+                <p class="text-justify">
+                    {{ historia.primeiro_paragrafo}}
+                </p>
             </h3>
             
         </div>
@@ -49,6 +50,44 @@
                 <strong>Rodada Atual:</strong> {{ historia.rodada_atual }}
             </h3>
         </div>   
+    </div>
+
+    <div class="container">
+        <div class="col-md-12">
+            
+            {% regroup paragrafos by rodada as rodada_list %}
+            
+            {% for rodada in rodada_list %}
+                <h3 class="text-center">
+                    <hr class="divisao-historia">
+                    Rodada {{ rodada.grouper }}
+                </h3>
+                {% for item in rodada.list %}
+                    <strong>Usuário: </strong> {{ item.usuario.nome }} - 
+                    <strong>Data: </strong> {{ item.data_fim}}
+                    <br>
+                    <br>
+                    <strong>Parágrafo:</strong> 
+                    <p>
+                        {{ item.descricao}}
+                    </p>
+                    <br>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        {% if historia.ordem_atual == ordem_usuario %}
+        <div class="col-md-12" style="margin-bottom:50px">
+            <h3 class="text-center">
+                Agora é a sua vez de escrever!
+            </h3>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <textarea class="form-control" rows=10></textarea>
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+        {% endif %}
     </div>
 					
 </body>

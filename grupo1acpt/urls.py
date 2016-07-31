@@ -22,7 +22,7 @@ urlpatterns = [
 	url(r'^$', 'editor.views.index'),
 	url(r'^index', 'editor.views.index'),	
     url(r'^inicial/', 'editor.views.inicial'),
-    url(r'^historia/', 'editor.views.historia'),
+    url(r'^historia/(?P<pk>[0-9]+)/$', 'editor.views.historia'),
 	url(r'^editar/(?P<pk>[0-9]+)/$', 'editor.views.editar'),
 	url(r'^iniciarEscrita/(?P<pk>[0-9]+)/$', 'editor.views.iniciarEscrita'),
 	url(r'^convidar/(?P<pk>[0-9]+)/$', 'editor.views.convidar'),

@@ -31,8 +31,9 @@ class Texto(models.Model):
 	tempo_participante = models.IntegerField(null = True, blank = True)
 	numero_rodadas = models.IntegerField(null = True, blank = True)
 	encerrado = models.BooleanField()
-	rodada_atual = models.IntegerField(null = True, blank = True)
+	rodada_atual = models.IntegerField(null = True, blank = True, default = 1)
 	numero_linhas = models.IntegerField(null = True, blank = True)
+	ordem_atual = models.IntegerField(null = True, blank = True, default = 1)
 	
 	class Meta:
 		db_table = 'Texto'
@@ -54,6 +55,8 @@ class Paragrafo(models.Model):
 	data_inicio = models.DateTimeField(null = True)
 	data_fim = models.DateTimeField(null = True)
 	descricao = models.TextField(max_length = 1000)
+	rodada = models.IntegerField(null = True, blank = True)
+	ordem = models.IntegerField(null = True, blank = True)
     
 	class Meta:
 		db_table = 'Paragrafo'

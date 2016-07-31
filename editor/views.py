@@ -4,6 +4,8 @@ from django.contrib import auth
 from django.template.context_processors import csrf
 from .models import Texto
 from .models import Usuario
+from .models import Paragrafo
+from .models import Texto_Usuario
 from .forms import *
 
 # Create your views here.
@@ -27,9 +29,12 @@ def index(request):
 		context = {'all_usuarios' : usuarios}
 		return render(request, 'index.html', context)
 
-def historia(request):
-    historia = Texto.objects.filter()[:1].get()
-    return render(request, 'historia.html', {'historia': historia})
+def historia(request, pk):
+    historia = Texto.objects.filter(id=pk).get()
+    paragrafos = Paragrafo.objects.filter(texto=pk).all().order_by('rodada', 'ordem')
+    usuario = request.session['usuario']
+    ordem_usuario = Texto_Usuario.objects.filter(texto=pk).filter(usuario=usuario).get()
+    return render(request, 'historia.html', {'historia': historia, 'paragrafos': paragrafos, 'ordem_usuario': ordem_usuario.ordem})
 		
 def editar(request, pk):
 	texto = get_object_or_404(Texto, pk=pk)

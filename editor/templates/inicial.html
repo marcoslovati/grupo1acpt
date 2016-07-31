@@ -24,36 +24,70 @@
 					<table class="table table-striped">						 
 						<thead> 
 							<tr> 
-								<th>Título</th> 
-								<th>Gênero</th> 
-								<th>Nº Rodadas</th> 
-								<th>Encontro</th> 
+								<th>
+                                    Título
+                                </th> 
+								<th>
+                                    Gênero
+                                </th> 
+								<th>
+                                    Nº Rodadas
+                                </th> 
+								<th>
+                                    Encontro
+                                </th> 
                                 <th colspan="3"></th>
 							</tr> 
 						</thead> 
 						<tbody>
 						{% for texto in textos_moderador %}
-							<tr title="{{ texto.primeiro_paragrafo }}"> 
-								<th scope="row">{{texto.titulo}}</th> 
-								<td>{{texto.genero.nome}}</td> 
-								<td>{{texto.numero_rodadas}}</td>
-								<td>@{{texto.data_encontro}}</td> 
+                            
+							<tr> 
+                                
+								<th scope="row">
+                                    <a href="{% url 'editor.views.historia' pk=texto.pk %}" title="Clique para ver a história">
+                                        {{texto.titulo}}
+                                    </a>
+                                </th> 
+								<td>
+                                    {{texto.genero.nome}}
+                                </td> 
+								<td>
+                                    {{texto.numero_rodadas}}
+                                </td>
+								<td>
+                                    @{{texto.data_encontro}}
+                                </td> 
 								{% if texto.numero_rodadas %}
 									<td></td>
 								{% else %}
-									<td><a href="{% url 'editor.views.editar' pk=texto.pk %}">Configurar</a></td>
+									<td>
+                                        <a href="{% url 'editor.views.editar' pk=texto.pk %}">
+                                            Configurar
+                                        </a>
+                                </td>
 								{% endif %}
 								{% if texto.primeiro_paragrafo %}
 									<td></td>
 								{% else %}
-									<td><a href="{% url 'editor.views.convidar' pk=texto.pk %}">Convidar participantes</a></td>
+									<td>
+                                        <a href="{% url 'editor.views.convidar' pk=texto.pk %}">
+                                            Convidar participantes
+                                        </a>
+                                    </td>
 								{% endif %}
 								{% if texto.primeiro_paragrafo %}
 									<td></td>
 								{% else %}
-								<td><a href="{% url 'editor.views.iniciarEscrita' pk=texto.pk %}">Iniciar Escrita</a></td>
+								<td>
+                                    <a href="{% url 'editor.views.iniciarEscrita' pk=texto.pk %}">
+                                        Iniciar Escrita
+                                    </a>
+                                </td>
 								{% endif %}
-							</tr> 
+                                    </a>
+							</tr>
+                                
 						{% endfor %}
 						</tbody> 
 					</table>
@@ -67,19 +101,37 @@
 					<table class="table table-striped">						
 						<thead> 
 							<tr> 
-								<th>Título</th> 
-								<th>Gênero</th> 
-								<th>Nº Rodadas</th> 
-								<th>Encontro</th> 
+								<th>
+                                    Título
+                                </th> 
+								<th>
+                                    Gênero
+                                </th> 
+								<th>
+                                    Nº Rodadas
+                                </th> 
+								<th>
+                                    Encontro
+                                </th> 
 							</tr> 
 						</thead> 
 						<tbody>
 						{% for texto in textos_convidado %}
 							<tr> 
-								<th scope="row">{{texto.titulo}}</th> 
-								<td>{{texto.genero.nome}}</td> 
-								<td>{{texto.numero_rodadas}}</td>
-								<td>@{{texto.data_encontro}}</td> 
+								<th scope="row">
+                                    <a href="{% url 'editor.views.historia' pk=texto.pk %}" title="Clique para ver a história">
+                                        {{texto.titulo}}
+                                    </a>
+                                </th> 
+								<td>
+                                    {{texto.genero.nome}}
+                                </td> 
+								<td>
+                                    {{texto.numero_rodadas}}
+                                </td>
+								<td>
+                                    @{{texto.data_encontro}}
+                                </td> 
 							</tr> 
 						{% endfor %}
 						</tbody> 
