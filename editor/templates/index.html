@@ -20,7 +20,7 @@
 			
 			<!-- {{ form.as_p }} -->
  
-			<input type="submit" class="btn btn-default" value="Entrar" />
+			<input id="btn-login" type="submit" class="btn btn-default" value="Acessar" />
         </form>
 		
 		{% if form.errors %}
@@ -28,11 +28,6 @@
 		{% endif %}
 
     </div>
-    {% block content %}
-    {% for usuario in all_usuarios %}
-    <p>{{ usuario.email }} - {{ usuario.nome }}</p>
-    {% endfor %}
-    {% endblock content %}
 </div>
 
 {% include "footer.html" %}
